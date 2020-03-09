@@ -1465,6 +1465,16 @@ SpotifyWebApi.prototype = {
       .build()
       .execute(HttpManager.get, callback);
   },
+  addSongToQueue: function(trackUri, callback) {
+	return WebApiRequest.builder(this.getAccessToken())
+		.withPath('/v1/me/player/queue')
+		.withHeaders({ 'Content-Type': 'application/json','Accept': 'application/json'})
+		.withQueryParameters({
+			uri: trackUri
+		})
+		.build()
+		.execute(HttpManager.post, callback);
+    },
 
   /**
    * Retrieve a category.
